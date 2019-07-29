@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+             box-sizing: border-box;
+           }
+
+       div.head_block {
+       background-color :#0C7C8C;
+       text-align : center;
+       color :Black;
+       padding: 30px
+       }
+
+       div.left_block {
+       background-color :#02B2CB;
+       text-align: left;
+       float: left;
+       height :1000px;
+       width : 250px
+       }
+       span {
+        padding : 2px 1px 1px 16px;
+        display : block;
+        font-size: 25px;
+       }
+       a.left_nav{
+        font-side:20px;
+        display: block;
+        padding : 2px 1px 1px 16px;
+        text-decoration:None;
+        color: black;
+       }
+       div.content {
+        padding:2px 1px 1px 16px;
+        float : left;
+       }
+       table {
+
+        border-collapse:collapse;
+        width: 500px
+       }
+
+       th , td {
+       border: 1px solid Black;
+       text-align:left;
+       padding:10px;
+       }
+
+    </style>
+    <title>Home</title>
+</head>
+<body>
+
+
+<div class="head_block" >
+    <h2> Audit Company</h2>
+</div>
+
+<div class="left_block">
+<span> Audit List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+</div>
+
+<div class="content">
+    <h2>Summary</h2>
+
+    <ul>
+        <li> No of Employees in the company : {{emp_count}} </li>
+        <p></p>
+        <li>Operating Cost of Company: {{opt_cost}}</li>
+        <p></p>
+        <li>Employee with highest salary :{% for max_sal_emp in max_sal %} {{max_sal_emp.first_name}} , {{max_sal_emp.last_name}}  {% endfor %}</li>
+        <p></p>
+        <li>Employee with least salary :{% for min_sal_emp in min_sal %} {{min_sal_emp.first_name}} , {{min_sal_emp.last_name}} {% endfor %} </li>
+        <p></p>
+
+    </ul>
+    <h2>List of employee for {{company.comp_name}} </h2>
+
+{% if emp_details_list %}
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Edit</th>
+        </tr>
+    {% for emp in emp_details_list %}
+        <tr>
+            <td>{{emp.first_name}}</td>
+            <td>{{emp.last_name}}</td>
+            <td>{{emp.salary}}</td>
+            <td>{{emp.status}}</td>
+            <td>
+                <a href="{% url 'cmpdetails:emp_delete' company.comp_id emp.emp_id %}" id="emp_delete" name="emp_delete">Delete</a>
+                <a href="{% url 'cmpdetails:emp_update' company.comp_id emp.emp_id %}" id="emp_update" name="emp_update">Update</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a href="{% url 'cmpdetails:add_new_emp_pg' company.comp_id %}" name="add_new" id="add_new">Add new</a>
+{% else %}
+    <p>No employees available</p>
+{% endif %}
+    <br>
+
+</div>
+</body>
+<script>
+
+
+</script>
+</html>

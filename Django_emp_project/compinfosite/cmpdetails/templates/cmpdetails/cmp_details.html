@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+             box-sizing: border-box;
+           }
+
+       div.head_block {
+       background-color :#0C7C8C;
+       text-align : center;
+       color :Black;
+       padding: 30px
+       }
+
+       div.left_block {
+       background-color :#02B2CB;
+       text-align: left;
+       float: left;
+       height :1000px;
+       width : 250px
+       }
+       span {
+        padding : 2px 1px 1px 16px;
+        display : block;
+        font-size: 25px;
+       }
+       a.left_nav{
+        font-side:20px;
+        display: block;
+        padding : 2px 1px 1px 16px;
+        text-decoration:None;
+        color: black;
+       }
+       div.content {
+        padding:2px 1px 1px 16px;
+        float : left;
+       }
+
+    </style>
+    <title> Company details</title>
+</head>
+<body>
+
+
+<div class="head_block" >
+    <h2> Audit Company</h2>
+</div>
+
+<div class="left_block">
+<span> Audit List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+</div>
+
+<div class="content">
+
+<h2> Company List</h2>
+{% if latest_company_list %}
+    <ul>
+    {% for company in latest_company_list %}
+        <li><a href="{% url 'cmpdetails:emp_details' company.comp_id %}">{{ company.comp_name }}</a></li>
+    {% endfor %}
+    </ul>
+    <p>{{error_message}}</p>
+{% else %}
+    <p>No company available</p>
+{% endif %}
+
+</div>
+
+
+</body>
+</html>

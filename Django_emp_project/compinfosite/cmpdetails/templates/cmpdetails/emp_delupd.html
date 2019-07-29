@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+             box-sizing: border-box;
+           }
+
+       div.head_block {
+       background-color :#0C7C8C;
+       text-align : center;
+       color :Black;
+       padding: 30px
+       }
+
+       div.left_block {
+       background-color :#02B2CB;
+       text-align: left;
+       float: left;
+       height :1000px;
+       width : 250px
+       }
+       span {
+        padding : 2px 1px 1px 16px;
+        display : block;
+        font-size: 25px;
+       }
+       a.left_nav{
+        font-side:20px;
+        display: block;
+        padding : 2px 1px 1px 16px;
+        text-decoration:None;
+        color: black;
+       }
+       div.content {
+        padding:2px 1px 1px 16px;
+        float : left;
+       }
+
+    </style>
+    <title>Home</title>
+</head>
+<body>
+
+
+<div class="head_block" >
+    <h2> Audit Company</h2>
+</div>
+
+<div class="left_block">
+<span> Audit List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+</div>
+
+<div class="content">
+    <h3> employee to be updated </h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
+
+            <form action="#" id="emp_deactivate" name ="emp_deactivate">
+                <td><input type="text">{{ emp.first_name }}</td>
+
+            </form>
+        </tr>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>

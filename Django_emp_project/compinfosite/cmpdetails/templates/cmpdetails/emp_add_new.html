@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+             box-sizing: border-box;
+           }
+
+       div.head_block {
+       background-color :#0C7C8C;
+       text-align : center;
+       color :Black;
+       padding: 30px
+       }
+
+       div.left_block {
+       background-color :#02B2CB;
+       text-align: left;
+       float: left;
+       height :1000px;
+       width : 250px
+       }
+       span {
+        padding : 2px 1px 1px 16px;
+        display : block;
+        font-size: 25px;
+       }
+       a.left_nav{
+        font-side:20px;
+        display: block;
+        padding : 2px 1px 1px 16px;
+        text-decoration:None;
+        color: black;
+       }
+       div.content {
+        padding:2px 1px 1px 16px;
+        float : left;
+       }
+       table {
+
+        border-collapse:collapse;
+        width: 500px
+       }
+
+       th , td {
+       border: 1px solid Black;
+       text-align:left;
+       padding:10px;
+       }
+
+    </style>
+    <title>Home</title>
+</head>
+<body>
+
+
+<div class="head_block" >
+    <h2> Audit Company</h2>
+</div>
+
+<div class="left_block">
+<span> Audit List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+</div>
+
+<div class="content">
+    <h3> Employee details to be updated </h3>
+    <form action ="{% url 'cmpdetails:emp_add_new' comp_id %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th>Edit</th>
+            </tr>
+
+            <tr>
+                <td><input type="text" name="emp_fname" id="emp_fname" ></td>
+                <td><input type="text" name="emp_lname" id="emp_lname" ></td>
+                <td><input type="text" name="emp_sal" id="emp_sal" ></td>
+                <td><input type="text" name="emp_status" id="emp_status" ></td>
+                <td><input type="submit" name="Save" id="emp_save" value="Save" ></td>
+
+            </tr>
+
+        </table>
+    </form>
+    <a href="{% url 'cmpdetails:emp_details' comp_id %}" name="back" id="Back">Back</a>
+</div>
+
+
+</body>
+</html>
