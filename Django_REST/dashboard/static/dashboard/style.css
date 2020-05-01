@@ -1,0 +1,15 @@
+.fas {
+          cursor: pointer;
+          padding-left: 0px;
+        }
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+
+.column.side {
+  width: 25%;
+}

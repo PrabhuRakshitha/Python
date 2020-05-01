@@ -1,0 +1,47 @@
+ * {
+             box-sizing: border-box;
+           }
+
+       div.head_block {
+       background-color :#0C7C8C;
+       text-align : center;
+       color :Black;
+       padding: 30px
+       }
+
+       div.left_block {
+       background-color :#02B2CB;
+       text-align: left;
+       float: left;
+       height :1000px;
+       width : 250px
+       }
+       span {
+        padding : 2px 1px 1px 16px;
+        display : block;
+        font-size: 25px;
+       }
+       a.left_nav{
+        font-side:20px;
+        display: block;
+        padding : 2px 1px 1px 16px;
+        text-decoration:None;
+        color: black;
+       }
+       div.content {
+        padding:2px 1px 1px 16px;
+        float : left;
+       }
+
+
+       table {
+
+        border-collapse:collapse;
+        width: 500px
+       }
+
+       th , td {
+       border: 1px solid Black;
+       text-align:left;
+       padding:10px;
+       }

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <title>COVID19 Chart</title>
+
+         </head>
+  <body onload="start_here()">
+  <p>COVID19 chart for affected Countries</p>
+  <div>
+      <label>Countries</label>
+        <select id="countries" onchange=" set_country(this.value)">
+            {% for con in countries %}
+                <option value="{{ con }}" > {{ con }} </option>
+            {% endfor %}
+        </select >
+  </div>
+  <div>
+      <canvas id="myChart" width="100" height="35 "></canvas>
+  </div>
+   <script>
+         let default_data =[];
+         let labels =[];
+         let con='US';
+         let ctx = document.getElementById('myChart').getContext('2d');
+         let myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'New COVID19 Cases for '+ con,
+                            data: default_data,
+                            borderColor:'#26c6da',
+                            fill:false}]
+                          },
+
+                });
+
+         function set_country( value){
+         console.log(value);
+         con =value;
+         console.log(con);
+         start_here();
+         }
+        function start_here() {
+            document.getElementById('countries').value=con;
+            var endpoint ='/chart/chart_data_elastic/';
+            console.log(con.replace(/ /g,'_'));
+            endpoint = endpoint + con.replace(/ /g,'_');
+
+            $.ajax({ method:"GET",
+                    url:endpoint,
+                    success: function(data){
+                    default_data= Object.values(data);
+                    labels= Object.keys(data);
+                    console.log(default_data);
+                    console.log(labels);
+                    setChart();
+                    },
+                    error: function(err_data){
+                    console.log(err_data);
+                    }
+            });
+        }
+        function setChart(){
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                console.log(labels);
+                myChart.data.labels=labels;
+                myChart.data.datasets[0].data =default_data;
+
+                myChart.update();
+
+
+        }
+
+        </script>
+
+  </body>
+</html>

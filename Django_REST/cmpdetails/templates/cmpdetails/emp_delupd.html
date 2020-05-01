@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cmpdetails/cmp_style.css' %}">
+    <title>Home</title>
+</head>
+<body>
+
+
+<div class="head_block" >
+    <h2> HRMS System</h2>
+</div>
+
+<div class="left_block">
+<span> Audit List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+    <a href="{% url 'logout' %}" class ="left_nav">logout</a>
+</div>
+
+<div class="content">
+    <h3> employee to be updated </h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
+
+            <form action="#" id="emp_deactivate" name ="emp_deactivate">
+                <td><input type="text">{{ emp.first_name }}</td>
+
+            </form>
+        </tr>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <script src="https://kit.fontawesome.com/16adb1c5db.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .fas {
+          cursor: pointer;
+          padding-left: 0px;
+        }
+
+        .column {
+          float: left;
+          width: 25%;
+          padding: 15px;
+        }
+        .column.side {
+          width: 15%;
+          padding: 10px;
+          height: 200px;
+          background-color: #a5d6a7;
+          border: 5px solid white;
+        }
+        .edit-tools {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+    </style>
+
+    <title>Dashboard</title>
+</head>
+<body>
+ <h2> Clusters</h2>
+ <a href="{% url 'logout' %}" class ='edit-tools'>logout</a>
+{% if clusters %}
+    <ul>
+    {% for cluster in clusters %}
+        {% if cluster.cluster_id == cluster_id %}
+            <form action ="{% url 'dashboard:save_cluster_elastic' cluster.cluster_id %}" method="post">
+            {% csrf_token %}
+                <div class="column side">
+                    <h3>{{ cluster.cluster_name }}({{cluster.server_count}})</h3>
+                    <span>No of servers: </span><input type="text" name="count" id="count" value="{{ cluster.server_count }}"/>
+                    <a href="#" onclick="document.forms[0].submit();return false;"><i class="fas fa-check"></i></a>
+                    <br/>
+                    <br/>
+                    <span>CPU :59% </span>
+                    <span> Memory : 15% Free</span>
+                </div>>
+        {% else %}
+        <div class="column side">
+
+            <h3>{{ cluster.cluster_name }}({{cluster.server_count}})
+            </h3>
+                    <span>No of servers :{{cluster.server_count}}</span>
+                    {% if user.username == "admin" %}
+                        <a href="{% url 'dashboard:edit_cluster_elastic' cluster.cluster_id %}"><i class="fas fa-pencil-alt"></i> </a>
+                    {% endif %}
+                    <br/>
+                    <br/>
+                    <span>CPU :59% </span>
+                    <span> Memory : 15% Free</span>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No clusters available</p>
+{% endif %}
+
+</body>
+</html>

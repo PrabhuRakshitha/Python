@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h2> Clusters</h2>
+{% if clusters %}
+    <ul>
+    {% for cluster in clusters %}
+        <li>
+            {{ cluster.cluster_name }}( {{cluster.server_count}} )
+            <a href="{% url 'dashboard:edit_cluster' cluster.cluster_id %}" class="left_nav"> Edit</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No clusters available</p>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cmpdetails/cmp_style.css' %}">
+    <title>Home</title>
+</head>
+<body>
+
+<div class="head_block" >
+    <h2> HRMS System</h2>
+</div>
+
+<div class="left_block">
+<span> Manage List</span>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Company</a>
+    <a href="/cmpdetails/cmp_details" class="left_nav"> Employee</a>
+    <a href="#" class="left_nav">Transfer Employee</a>
+    <a href="{% url 'logout' %}" class ="left_nav">logout</a>
+</div>
+
+<div class="content">
+    <h3> Welcome to compamny website</h3>
+    <p>This site is accessible only to the employees </p>
+
+</div>
+
+
+</body>
+</html>
