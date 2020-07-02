@@ -13,7 +13,7 @@ class Solution(object):
             if n == 0:
                 out = 1
                 break
-            elif counter == abs(n) :
+            elif counter == abs(n):
                 break
             elif counter * i <= abs(n):
                 out = out * multiplier
